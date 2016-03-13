@@ -1,29 +1,17 @@
 Util u;
-Factory f;
+Control c;
 
-Interface @ saw[5];
 
-u.scale(":C", 48, 3) @=> int s[];
+spork ~c.playChords(  ":bpf_saw",
+                      0.3,
+                      [[22,35,54,63,64,76],
+                      [45,52,54,59,61,64],
+                      [28,40,47,56,59,63],
+                      [42,52,57,57,61,75]],
+                      1::second,
+                      2::second,
+                      4);
 
-for(int i; i < 3; i++){
-  f.gen(":bpf_saw") @=> saw[i];
-}
-
-for(int j; j < 5; j++){
-  for(int i; i < 3; i++){
-    saw[i].setParam(":gain", 0.2);
-    saw[i].setParam(":freq", Std.mtof(s[Math.random2(0, s.size() - 1)]));
-  }
-
-  for(int i; i < 3; i++){
-    saw[i].noteOn();
-  }
-
+while(1){
   1::second => now;
-
-  for(int i; i < 3; i++){
-    saw[i].noteOff();
-  }
-
-  2::second => now;
 }
