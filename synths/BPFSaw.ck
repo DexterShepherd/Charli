@@ -14,12 +14,10 @@ public class BPFSaw extends Interface{
   spork ~update();
 
   fun void noteOn(){
-    <<<"note on">>>;
     env.keyOn();
   }
 
   fun void noteOff(){
-    <<<"note off">>>;
     env.keyOff();
   }
   

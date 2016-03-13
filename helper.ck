@@ -1,6 +1,6 @@
 public class Util{
-  [2, 4, 5, 7, 9, 11, 12] @=> int major_base[];
-  [2, 3, 5, 7, 8, 10, 12] @=> int minor_base[];
+  [0, 2, 4, 5, 7, 9, 11] @=> int major_base[];
+  [0, 2, 3, 5, 7, 8, 10] @=> int minor_base[];
   [":A", ":A^", ":B", ":C", ":C^", ":D",
    ":D^", ":E", ":F", ":F^", ":G", ":G^"] @=> string major_degrees[];
   [":a", ":a^", ":b", ":c", ":c^", ":d",
@@ -14,18 +14,17 @@ public class Util{
       return temp;
     }
     for(int i; i < 12; i++){
-      <<< _type + " : " + minor_degrees[i] >>>;
       if(_type == major_degrees[i]){
         for(int j; j < _num_octaves; j++){
           for(int k; k < 7; k++){
-            temp << major_base[i] + k + (j * 12) + _transpose;
+            temp << (major_base[k] + i)%12 + (j * 12) + _transpose;
           }
         }
         return temp;
       }else if(_type == minor_degrees[i]){
         for(int j; j < _num_octaves; j++){
           for(int k; k < 7; k++){
-            temp << minor_base[i] + k + (j * 12) + _transpose;
+            temp << (minor_base[i] + k)%12 + (j * 12) + _transpose;
           }
         }
         return temp;
