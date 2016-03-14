@@ -1,4 +1,4 @@
-public class Interface{
+public class Interface extends Chubgraph{
   float params[0];
 
   fun void setParam(string _which, float _value){

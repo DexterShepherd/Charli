@@ -13,7 +13,7 @@ public class BPFSaw extends Interface{
     return _info;
   }
 
-  BlitSaw sig => BPF bpf => ADSR env => Gain master => dac;
+  BlitSaw sig => BPF bpf => ADSR env => Gain master => outlet;
   0 => master.gain;
   
   500.0   => params[":freq"];

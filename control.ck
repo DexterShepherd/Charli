@@ -1,10 +1,10 @@
 public class Control{
   Factory factory;
-  fun void playChords(string _synth, float _gain, int _chords[][], dur _atk, dur _rel, int _loops){
+  fun ugen playChords(string _synth, float _gain, int _chords[][], dur _atk, dur _rel, int _loops){
     int num_synths;
+    Gain master;
     0 => int temp_max;
     for(int i; i < _chords.size() -1; i++){
-      <<<i + " : " + _chords[i].size()>>>;
       if(_chords[i].size() > temp_max){
         _chords[i].size() => num_synths;
       }
@@ -13,6 +13,7 @@ public class Control{
     Interface @ synths[num_synths]; //set up array of null synths
     for(int i; i < num_synths; i++){
       factory.gen(_synth) @=> synths[i];
+      synths[i] => master;
     }
     if(_loops != -1){
       for(int count; count < _loops; count++){
