@@ -1,4 +1,18 @@
 public class BPFSaw extends Interface{
+
+  fun string info(){
+    "A single BlitSaw running through a bandpass filter.
+    :freq       - Osc frequency
+    :gain       - Final gain stage
+    :filt_freq  - Bandpass filter frequency
+    :q          - Bandpass filter quality
+    :atk        - ADSR Attack time
+    :sus        - ADSR Sustain level
+    :rel        - ADSR Release time" => string _info;
+    <<<_info>>>;
+    return _info;
+  }
+
   BlitSaw sig => BPF bpf => ADSR env => Gain master => dac;
   0 => master.gain;
   

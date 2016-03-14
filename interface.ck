@@ -1,5 +1,6 @@
 public class Interface{
   float params[0];
+
   fun void setParam(string _which, float _value){
     _value => params[_which];
   }
@@ -7,11 +8,9 @@ public class Interface{
     return params[_which];
   }
 
-  fun void noteOn(){
-    //implement in child
-  }
+  fun void noteOn(){} //implement in child
 
-  fun void noteOff(){
-    //implement in child
-  }
+  fun void noteOff(){} //implement in child
+
+  fun string info(){} //implement in child
 }
