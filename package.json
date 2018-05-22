@@ -1,0 +1,15 @@
+{
+  "name": "chirp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.6.1",
+    "mocha": "^5.2.0"
+  }
+}
