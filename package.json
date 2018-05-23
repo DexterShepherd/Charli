@@ -1,7 +1,7 @@
 {
-  "name": "chirp",
-  "version": "1.0.0",
-  "description": "",
+  "name": "charli",
+  "version": "0.0.1",
+  "description": "utility functions and preprocessing for the chuck language",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
