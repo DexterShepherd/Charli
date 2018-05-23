@@ -3,10 +3,37 @@ const path = require('path')
 const map = require('async/map')
 const { promisify } = require('util')
 const { flatten } = require('underscore')
+const { spawn } = require('child_process')
 
 const readFile = promisify(fs.readFile)
 
-async function run(filepath) {
+async function run(filepath, printToConsole = true) {
+  return new Promise(async (resolve, reject) => {
+    const { requires } = await processFile(filepath)  
+    requires.push(filepath)
+
+    const chuckProcess = spawn('chuck', requires)
+
+    if ( printToConsole ) {
+      chuckProcess.stdout.setEncoding('utf8')
+      chuckProcess.stderr.setEncoding('utf8')
+
+      chuckProcess.stdout.on('data', (chunk) => {
+        console.log(chunk)
+      })
+
+      chuckProcess.stderr.on('data', (chunk) => {
+        console.log(chunk)
+      })
+    }
+
+    chuckProcess.on('close', (code) => {
+      resolve(code)
+    });
+  })
+}
+
+async function generateChuckCommand(filepath) {
   const data = await processFile(filepath)  
   let command = data.requires.reduce((acc, val) => acc += `${val} `, "chuck ")
   command += filepath
@@ -74,5 +101,6 @@ module.exports = {
   loadFile,
   processFile,
   processRequires,
+  generateChuckCommand,
   run
 }
