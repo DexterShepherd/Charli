@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha"
   },
-  "author": "",
+  "author": "Dexter J Shepherd",
   "license": "ISC",
   "dependencies": {
     "async": "^2.6.1",
