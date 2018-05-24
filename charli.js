@@ -12,6 +12,8 @@ async function run(filepath, printToConsole = true) {
     const { requires } = await processFile(filepath)  
     requires.push(filepath)
 
+
+    console.log(`Chucking: ${filepath} \n`)
     const chuckProcess = spawn('chuck', requires)
 
     if ( printToConsole ) {
@@ -42,6 +44,7 @@ async function generateChuckCommand(filepath) {
 
 async function processFile(filepath) {
   const contents = await loadFile(filepath)
+  console.log(`Processing: ${filepath}`)
   return {
     requires: await processRequires(contents, filepath)
   }
@@ -68,6 +71,7 @@ async function processRequires(data, filepath) {
 }
 
 async function loadFile(filepath) {
+  console.log(`Loading File: ${filepath}`)
   const buffer = await readFile(filepath)
   return buffer.toString() 
 }
