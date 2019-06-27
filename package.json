@@ -1,6 +1,6 @@
 {
   "name": "charli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "utility functions and preprocessing for the chuck language",
   "main": "index.js",
   "scripts": {
