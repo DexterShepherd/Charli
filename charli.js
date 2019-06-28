@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const map = require('async/map')
 const { promisify } = require('util')
-const { flatten } = require('underscore')
+const { flatten, uniq } = require('underscore')
 const { spawn } = require('child_process')
 
 const readFile = promisify(fs.readFile)
@@ -13,7 +13,6 @@ async function run(filepath, printToConsole = true) {
     requires.push(filepath)
 
 
-    console.log(`Chucking: ${filepath} \n`)
     const chuckProcess = spawn('chuck', requires)
 
     if ( printToConsole ) {
@@ -44,7 +43,6 @@ async function generateChuckCommand(filepath) {
 
 async function processFile(filepath) {
   const contents = await loadFile(filepath)
-  console.log(`Processing: ${filepath}`)
   return {
     requires: await processRequires(contents, filepath)
   }
@@ -67,11 +65,10 @@ async function processRequires(data, filepath) {
     }
   }
 
-  return flatten(requiredFiles).map(p => path.normalize(p))
+  return uniq(flatten(requiredFiles).map(p => path.normalize(p)))
 }
 
 async function loadFile(filepath) {
-  console.log(`Loading File: ${filepath}`)
   const buffer = await readFile(filepath)
   return buffer.toString() 
 }

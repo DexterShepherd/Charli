@@ -12,5 +12,14 @@ describe('Charli', function() {
           'test/require/class-3.ck' ]
       )
     })
+    it('should not return duplicate paths', async function() {
+      const input = await Charli.loadFile('test/require/require-duplicate.ck')
+      assert.deepEqual( 
+        await Charli.processRequires(input, 'test/require/require-duplicate.ck'),
+        [ 'test/require/class-1.ck', 
+          'test/require/class-2.ck',
+          'test/require/class-3.ck' ]
+      )
+    })
   })
 })
