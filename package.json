@@ -9,7 +9,7 @@
   "author": "Dexter J Shepherd",
   "license": "ISC",
   "dependencies": {
-    "async": "^2.6.1",
+    "async": "^3.2.2",
     "mocha": "^5.2.0",
     "underscore": "^1.9.0"
   }
